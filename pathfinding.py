@@ -9,7 +9,7 @@ class QItem:
         return f"QItem({self.row}, {self.col}, {self.dist}, {self.path})"
  
 def minDistance(grid):
-    source = QItem(0, 0, 0, [(0,0)])
+    source = QItem(0, 0, 0, [])
  
     # Finding the source to start from
     for row in range(len(grid)):
@@ -17,6 +17,7 @@ def minDistance(grid):
             if grid[row][col] == 's':
                 source.row = row
                 source.col = col
+                source.path.append((source.row,source.col))
                 break
  
     # To maintain location visit status
