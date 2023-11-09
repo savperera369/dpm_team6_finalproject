@@ -19,8 +19,7 @@ if __name__ == '__main__':
 
     for job in jobs:
         (x,y,fireType) = job
-        grid[int(x)][int(y)] = '0'
-        
+        grid[int(x)][int(y)] = 'd'
  
     grid[0][0] = 's'
     
