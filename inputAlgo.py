@@ -24,7 +24,24 @@ if __name__ == '__main__':
     grid[0][0] = 's'
     
     print(grid)
+    finalPath = []
+    sourceX = 0
+    sourceY = 0
+    for i in range(3):
+        dist, pathArr = minDistance(grid)
+        if pathArr != []:
+            xCord = pathArr[len(pathArr)-1][0]
+            yCord = pathArr[len(pathArr)-1][1]
+            grid[xCord][yCord] = '0'
+            grid[sourceX][sourceY] = '*'
+            newSourceX = pathArr[len(pathArr)-2][0]
+            newSourceY = pathArr[len(pathArr)-2][1]
+            grid[newSourceX][newSourceY] = 's'
+            sourceX = newSourceX
+            sourceY = newSourceY
+            print(pathArr)
+        else:
+            print("No path")
+            break
 
-    dist, pathArr = minDistance(grid)
-    print(dist)
-    print(pathArr)
+    print(finalPath)

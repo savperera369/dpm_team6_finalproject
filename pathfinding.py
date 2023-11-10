@@ -17,7 +17,7 @@ def minDistance(grid):
             if grid[row][col] == 's':
                 source.row = row
                 source.col = col
-                source.path.append((source.row,source.col))
+                source.path.append([source.row,source.col])
                 break
  
     # To maintain location visit status
@@ -40,25 +40,32 @@ def minDistance(grid):
             source.path.append([source.row - 1, source.col])
             queue.append(QItem(source.row - 1, source.col, source.dist + 1, source.path))
             visited[source.row - 1][source.col] = True
+            if (grid[source.row - 1][source.col] == 'd'):
+                return source.dist, source.path
  
         # moving down
         if isValid(source.row + 1, source.col, grid, visited):
             source.path.append([source.row + 1, source.col])
             queue.append(QItem(source.row + 1, source.col, source.dist + 1, source.path))
             visited[source.row + 1][source.col] = True
+            if (grid[source.row + 1][source.col] == 'd'):
+                return source.dist, source.path
  
         # moving left
         if isValid(source.row, source.col - 1, grid, visited):
             source.path.append([source.row, source.col - 1])
             queue.append(QItem(source.row, source.col - 1, source.dist + 1, source.path))
             visited[source.row][source.col - 1] = True
- 
+            if (grid[source.row][source.col - 1] == 'd'):
+                return source.dist, source.path
         # moving right
         if isValid(source.row, source.col + 1, grid, visited):
             source.path.append([source.row, source.col + 1])
             queue.append(QItem(source.row, source.col + 1, source.dist + 1, source.path))
             visited[source.row][source.col + 1] = True
- 
+            if (grid[source.row][source.col + 1] == 'd'):
+                return source.dist, source.path
+            
     return -1, []
  
  
