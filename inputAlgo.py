@@ -4,12 +4,15 @@ if __name__ == '__main__':
 
     jobs = []
 
-    for i in range(3):
-        userInput = input("Enter Coordinates of a Fire and Type of Fire: ")
-        fires = userInput.split(",")
-        tupleInput = (fires[0], fires[1], fires[2])
+    userInput = input("Enter Coordinates of a Fire and Type of Fire: ")
+    fires = userInput.split(",")
+    
+    i = 0
+    while i<9:
+        tupleInput = (fires[i], fires[i+1], fires[i+2])
         jobs.append(tupleInput)
-
+        i = i + 3
+    
     print(jobs)
 
     grid = []
@@ -28,7 +31,7 @@ if __name__ == '__main__':
     sourceX = 0
     sourceY = 0
     for i in range(3):
-        dist, pathArr = minDistance(grid)
+        pathArr = minDistance(grid)
         if pathArr != []:
             xCord = pathArr[len(pathArr)-1][0]
             yCord = pathArr[len(pathArr)-1][1]
@@ -39,9 +42,13 @@ if __name__ == '__main__':
             grid[newSourceX][newSourceY] = 's'
             sourceX = newSourceX
             sourceY = newSourceY
+            for node in pathArr:
+                finalPath.append(node)
             print(pathArr)
         else:
             print("No path")
             break
 
     print(finalPath)
+
+    

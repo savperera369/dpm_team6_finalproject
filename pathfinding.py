@@ -1,15 +1,15 @@
 class QItem:
-    def __init__(self, row, col, dist, path):
+    def __init__(self, row, col, dist, prev=None):
         self.row = row
         self.col = col
         self.dist = dist
-        self.path = path
- 
+        self.prev = prev  # Added a reference to the previous node
+
     def __repr__(self):
-        return f"QItem({self.row}, {self.col}, {self.dist}, {self.path})"
+        return f"QItem({self.row}, {self.col}, {self.dist})"
  
 def minDistance(grid):
-    source = QItem(0, 0, 0, [])
+    source = QItem(0, 0, 0)
  
     # Finding the source to start from
     for row in range(len(grid)):
@@ -17,7 +17,6 @@ def minDistance(grid):
             if grid[row][col] == 's':
                 source.row = row
                 source.col = col
-                source.path.append([source.row,source.col])
                 break
  
     # To maintain location visit status
@@ -31,49 +30,47 @@ def minDistance(grid):
     while len(queue) != 0:
         source = queue.pop(0)
  
-        # Destination found;
+        # Destination found
         if (grid[source.row][source.col] == 'd'):
-            return source.dist, source.path
+            # Output the precise path
+            path = []
+            while source is not None:
+                path.insert(0, (source.row, source.col))
+                source = source.prev
+            return path
  
-        # moving up
+        # Moving up
         if isValid(source.row - 1, source.col, grid, visited):
-            source.path.append([source.row - 1, source.col])
-            queue.append(QItem(source.row - 1, source.col, source.dist + 1, source.path))
+            next_node = QItem(source.row - 1, source.col, source.dist + 1, source)
+            queue.append(next_node)
             visited[source.row - 1][source.col] = True
-            if (grid[source.row - 1][source.col] == 'd'):
-                return source.dist, source.path
  
-        # moving down
+        # Moving down
         if isValid(source.row + 1, source.col, grid, visited):
-            source.path.append([source.row + 1, source.col])
-            queue.append(QItem(source.row + 1, source.col, source.dist + 1, source.path))
+            next_node = QItem(source.row + 1, source.col, source.dist + 1, source)
+            queue.append(next_node)
             visited[source.row + 1][source.col] = True
-            if (grid[source.row + 1][source.col] == 'd'):
-                return source.dist, source.path
  
-        # moving left
+        # Moving left
         if isValid(source.row, source.col - 1, grid, visited):
-            source.path.append([source.row, source.col - 1])
-            queue.append(QItem(source.row, source.col - 1, source.dist + 1, source.path))
+            next_node = QItem(source.row, source.col - 1, source.dist + 1, source)
+            queue.append(next_node)
             visited[source.row][source.col - 1] = True
-            if (grid[source.row][source.col - 1] == 'd'):
-                return source.dist, source.path
-        # moving right
+ 
+        # Moving right
         if isValid(source.row, source.col + 1, grid, visited):
-            source.path.append([source.row, source.col + 1])
-            queue.append(QItem(source.row, source.col + 1, source.dist + 1, source.path))
+            next_node = QItem(source.row, source.col + 1, source.dist + 1, source)
+            queue.append(next_node)
             visited[source.row][source.col + 1] = True
-            if (grid[source.row][source.col + 1] == 'd'):
-                return source.dist, source.path
-            
+ 
     return -1, []
  
- 
-# checking where move is valid or not
+# Checking where move is valid or not
 def isValid(x, y, grid, visited):
     if ((x >= 0 and y >= 0) and
         (x < len(grid) and y < len(grid[0])) and
             (grid[x][y] != '0') and (visited[x][y] == False)):
         return True
     return False
+ 
  
