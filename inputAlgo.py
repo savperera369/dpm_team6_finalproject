@@ -44,10 +44,14 @@ if __name__ == '__main__':
             sourceY = newSourceY
             for node in pathArr:
                 finalPath.append(node)
-            print(pathArr)
         else:
             print("No path")
             break
+    
+    grid[0][0] = 'd'
+    lastPath = minDistance(grid)
+    for element in lastPath:
+        finalPath.append(element)
 
     print(finalPath)
 
