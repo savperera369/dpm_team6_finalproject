@@ -13,8 +13,8 @@ def forward():
 
 input = [[0,0], [0,1], [0,2], [1,2], [1,3], [1,2], [0,2], [0,1], [0,0]]
 
-def path_to_instruction(input):
-    for i in range(len(input - 1)):
+def path_to_instruction(input,d):
+    for i in range(len(input)-1):
         if input[i][0] < input[i+1][0] and input[i][1] == input[i+1][1] and d == 0: #travel in +x direction, already facing +x direction
             forward()
             d = 0
@@ -99,3 +99,5 @@ def path_to_instruction(input):
                 forward()
                 d =3
                 print("-y from -x")
+
+path_to_instruction(input,d)
