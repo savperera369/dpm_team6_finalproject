@@ -1,20 +1,6 @@
 from pathfinding import *
 
-if __name__ == '__main__':
-
-    jobs = []
-
-    #prompt user for input in the form of a 9 tuple
-    userInput = input("Enter Coordinates of Fires and Types of Fires: ")
-    fires = userInput.split(",")
-    
-    #parse the jobs as three seperate three tuples
-    i = 0
-    while i<9:
-        tupleInput = (fires[i], fires[i+1], fires[i+2])
-        jobs.append(tupleInput)
-        i = i + 3
-    
+def createPath(arrJobs):
     grid = []
 
     #give the grid some structure before we modify it to reflect the client specifications
@@ -69,8 +55,26 @@ if __name__ == '__main__':
     for element in lastPath:
         finalPath.append(element)
 
-    print("Final Path: \n")
-    print(finalPath)
-    print("\n")
+    return finalPath
 
+if __name__ == '__main__':
+
+    jobs = []
+
+    #prompt user for input in the form of a 9 tuple
+    userInput = input("Enter Coordinates of Fires and Types of Fires: ")
+    fires = userInput.split(",")
+    
+    #parse the jobs as three seperate three tuples
+    i = 0
+    while i<9:
+        tupleInput = (fires[i], fires[i+1], fires[i+2])
+        jobs.append(tupleInput)
+        i = i + 3
+    
+    listOfCoordinates = createPath(jobs)
+
+    print("Final Path: \n")
+    print(listOfCoordinates)
+    print("\n")
     
