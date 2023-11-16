@@ -7,6 +7,8 @@ KM = Motor("C")
 # CM.reset_encoder()
 # KM.reset_encoder()
 
+#thisfilewaswrittenbykALE
+
 d = 0
 
 def turn_right():
