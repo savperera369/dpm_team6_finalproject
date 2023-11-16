@@ -11,15 +11,15 @@ def turn_left():
 def forward():
     pass
 
-inputVarVar = [[0,0], [0,1], [0,2], [1,2], [1,3], [1,2], [0,2], [0,1], [0,0]]
+inputVar = [[0,0], [0,1], [0,2], [1,2], [1,3], [1,2], [0,2], [0,1], [0,0]]
 
-def path_to_instruction(inputVarVar,d):
-    for i in range(len(inputVarVar)-1):
-        if inputVarVar[i][0] < inputVarVar[i+1][0] and inputVarVar[i][1] == inputVarVar[i+1][1] and d == 0: #travel in +x direction, already facing +x direction
+def path_to_instruction(inputVar,d):
+    for i in range(len(inputVar)-1):
+        if inputVar[i][0] < inputVar[i+1][0] and inputVar[i][1] == inputVar[i+1][1] and d == 0: #travel in +x direction, already facing +x direction
             forward()
             d = 0
             print("+x from +x")
-        elif inputVarVar[i][0] < inputVarVar[i+1][0] and inputVarVar[i][1] == inputVarVar[i+1][1] and d != 0: #travel in +x direction, not already facing +x direction
+        elif inputVar[i][0] < inputVar[i+1][0] and inputVar[i][1] == inputVar[i+1][1] and d != 0: #travel in +x direction, not already facing +x direction
             if d == 1:
                 turn_right()
                 forward()
@@ -36,11 +36,11 @@ def path_to_instruction(inputVarVar,d):
                 forward()
                 d = 0
                 print("+x from -y")
-        elif inputVarVar[i][0] == inputVarVar[i+1][0] and inputVarVar[i][1] < inputVarVar[i+1][1] and d == 1: #travel in +y direction, already facing +y direction
+        elif inputVar[i][0] == inputVar[i+1][0] and inputVar[i][1] < inputVar[i+1][1] and d == 1: #travel in +y direction, already facing +y direction
             forward()
             d = 1
             print("+y from +y")
-        elif inputVarVar[i][0] == inputVarVar[i+1][0] and inputVarVar[i][1] < inputVarVar[i+1][1] and d != 1: #travel in +y direction, not already facing +y direction
+        elif inputVar[i][0] == inputVar[i+1][0] and inputVar[i][1] < inputVar[i+1][1] and d != 1: #travel in +y direction, not already facing +y direction
             if d == 0:
                 turn_left()
                 forward()
@@ -57,11 +57,11 @@ def path_to_instruction(inputVarVar,d):
                 forward()
                 d = 1
                 print("+y from -y")
-        elif inputVarVar[i][0] > inputVarVar[i+1][0] and inputVarVar[i][1] == inputVarVar[i+1][1] and d == 2: #travel in -x direction, already facing -x direction
+        elif inputVar[i][0] > inputVar[i+1][0] and inputVar[i][1] == inputVar[i+1][1] and d == 2: #travel in -x direction, already facing -x direction
             forward()
             d = 2
             print("-x from -x")
-        elif inputVarVar[i][0] > inputVarVar[i+1][0] and inputVarVar[i][1] == inputVarVar[i+1][1] and d != 2: #travel in -x direction, not already facing -x direction
+        elif inputVar[i][0] > inputVar[i+1][0] and inputVar[i][1] == inputVar[i+1][1] and d != 2: #travel in -x direction, not already facing -x direction
             if d == 0:
                 turn_right()
                 turn_right()
@@ -78,11 +78,11 @@ def path_to_instruction(inputVarVar,d):
                 forward()
                 d = 2
                 print("-x from -y")
-        elif inputVarVar[i][0] == inputVarVar[i+1][0] and inputVarVar[i][1] > inputVarVar[i+1][1] and d == 3: #travel in -y direciton, already facing -y direction
+        elif inputVar[i][0] == inputVar[i+1][0] and inputVar[i][1] > inputVar[i+1][1] and d == 3: #travel in -y direciton, already facing -y direction
             forward()
             d = 3
             print("-y from -y")
-        elif inputVarVar[i][0] == inputVarVar[i+1][0] and inputVarVar[i][1] > inputVarVar[i+1][1] and d != 3: #travel in -y direciton, not already facing -y direction
+        elif inputVar[i][0] == inputVar[i+1][0] and inputVar[i][1] > inputVar[i+1][1] and d != 3: #travel in -y direciton, not already facing -y direction
             if d == 0:
                 turn_right()
                 forward()
@@ -100,4 +100,4 @@ def path_to_instruction(inputVarVar,d):
                 d =3
                 print("-y from -x")
 
-#path_to_instruction(inputVarVar,d)
+#path_to_instruction(inputVar,d)
