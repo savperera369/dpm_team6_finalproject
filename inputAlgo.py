@@ -61,6 +61,7 @@ def createPath(arrJobs):
 
 if __name__ == '__main__':
 
+    d=0
     jobs = []
 
     #prompt user for input in the form of a 9 tuple
@@ -80,5 +81,5 @@ if __name__ == '__main__':
     print(listOfCoordinates)
     print("\n")
 
-    path_to_instruction(listOfCoordinates)
+    path_to_instruction(listOfCoordinates, d)
     
