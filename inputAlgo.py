@@ -1,5 +1,6 @@
 # Written by Saviru
 from pathfinding import *
+from path_to_instructions import *
 
 def createPath(arrJobs):
     grid = []
@@ -78,4 +79,6 @@ if __name__ == '__main__':
     print("Final Path: \n")
     print(listOfCoordinates)
     print("\n")
+
+    path_to_instruction(listOfCoordinates)
     
